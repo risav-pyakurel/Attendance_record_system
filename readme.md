@@ -1,8 +1,8 @@
-# Bottle Attendance Record System
+#  Attendance Record System
 
 ## Overview
 
-The Bottle Attendance Record System is a Django-based application tailored to manage employee attendance efficiently for Bottle. This system includes user-friendly views to manage employee attendance, CSV import for bulk record creation, and email-based login using a custom user model. It incorporates multiple libraries to support custom forms, multi-select fields, and Nepali date functionality.
+The  Attendance Record System is a Django-based application tailored to manage employee attendance efficiently for Bottle. This system includes user-friendly views to manage employee attendance, CSV import for bulk record creation, and email-based login using a custom user model. It incorporates multiple libraries to support custom forms, multi-select fields, and Nepali date functionality.
 
 ## Features
 
