@@ -1,0 +1,65 @@
+{% extends 'partials/base.html' %}
+{% load group_tags %}
+
+
+
+
+
+{% block title %}Employee Record{% endblock title %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">Employee Records</h2>
+    {% if user|in_group:"admin" %}
+
+    <a href="{% url 'employee:employee_create' %}" class="btn btn-success mb-3">Create New Record</a>
+    {% endif %}
+    <table class="table table-bordered table-hover table-striped">
+        <thead>
+            <tr>
+                <th>S.N</th>
+                <th>Date Joined {{request.user.}} </th>
+                <th>Redmine-ID</th>
+                <th>Device-ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Designation</th>
+                <th>Group</th>
+                {% if user|in_group:"admin" %}
+                <th>Action</th>
+                {% endif %}
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in object_list %}
+            <tr>
+                <td>{{ forloop.counter}}</td>
+                <td>{{ record.date_joined|date:"Y-m-d" }}</td>
+                <td>{{ record.redmine_id }}</td>
+                <td>{{ record.device_id }}</td>
+                <td>{{ record.first_name }}</td>
+                <td>{{ record.last_name}}</td>
+                <td>{{ record.email }}</td>
+                <td>{{ record.get_designation_display}}</td>
+                <td>{{record.get_group_display}}</td>
+
+                {% if user|in_group:"admin" %}
+                <td>
+
+                    <a href="{% url 'employee:employee_update' record.pk %}" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="{% url 'employee:employee_delete' record.pk %}" class="btn btn-danger btn-sm"
+                        onclick="return confirm('Are you sure you want to delete this record?');">Delete</a>
+                </td>
+                {% endif %}
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="8" class="text-center">No Employee records found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock content %}

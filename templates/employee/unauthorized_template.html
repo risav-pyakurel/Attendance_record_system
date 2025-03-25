@@ -1,0 +1,15 @@
+{% extends 'employee/base.html' %}
+
+
+{% block title %}Permission Denied{% endblock title %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="alert alert-danger" role="alert">
+        <h4 class="alert-heading">Permission Denied</h4>
+        <p>You do not have permission to access this page.</p>
+        <hr>
+        <a href="{% url 'attendance_record:attendance_list' %}" class="btn btn-primary">Go to Attendance Record</a>
+    </div>
+</div>
+{% endblock content %}

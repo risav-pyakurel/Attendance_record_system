@@ -1,0 +1,16 @@
+{% extends 'partials/base.html' %}
+
+{% block title %}Delete employee Record{% endblock title %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">Delete Employee Record</h2>
+    <p>Are you sure you want to delete the employee record for <strong>{{ object.employee }}</strong>?</p>
+
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Confirm Delete</button>
+        <a href="{% url 'employee:employee_delete' object.pk %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock content %}

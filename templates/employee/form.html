@@ -1,0 +1,66 @@
+{% extends "partials/base.html" %}
+{% load static %}
+{% block title %}Form layout{% endblock title %}
+{% block extra_css %}
+{% endblock extra_css %}
+{% block content %}
+
+<!-- ============================================================== -->
+<!-- Start right Content here -->
+<!-- ============================================================== -->
+<div class="main-content">
+
+    <div class="page-content">
+        <div class="container-fluid">
+
+            {% block pagetitle %}
+            {% include "partials/page-title.html" %}
+            {% endblock pagetitle %}
+
+            <div class="row">
+                <div class="col-xxl-12">
+                    <div class="card">
+                        <div class="card-header align-items-center d-flex">
+                            <h4 class="card-title mb-0 flex-grow-1">Employee Form</h4>
+                        </div><!-- end card header -->
+
+                        <div class="card-body">
+                            <div class="live-preview">
+                                <form method="POST"
+                                    action="{% if employee %}{% url 'employee:employee_update' employee.pk %}{% else %}{% url 'employee:employee_create' %}{% endif %}">
+                                    {% csrf_token %}
+                                    <div class="row">
+                                        {% for field in form %}
+                                        <div class="col-md-12">
+                                            <div class="mb-3">
+                                                <label class="form-label">{{ field.label }}</label>
+                                                {{ field }}
+                                            </div>
+                                        </div><!--end col-->
+                                        {% endfor %}
+
+                                        <div class="form-group mt-3">
+                                            <button type="submit" class="btn btn-success">Save Record</button>
+                                            <a href="{% url 'employee:employee_list' %}"
+                                                class="btn btn-secondary">Cancel</a>
+                                        </div>
+                                    </div><!--end row-->
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- end col -->
+            </div><!--end row-->
+
+            {% block footer %}
+            {% include "partials/footer.html" %}
+            {% endblock footer %}
+        </div>
+    </div>
+</div>
+<!-- end main content-->
+{% endblock content %}
+{% block extra_js %}
+<!-- prismjs plugin -->
+<script src="{% static 'libs/prismjs/prism.js' %}"></script>
+{% endblock extra_js %}

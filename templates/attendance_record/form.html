@@ -1,0 +1,66 @@
+{% extends "partials/base.html" %}
+{% load static %}
+{% block title %}Form layout{% endblock title %}
+
+{% block content %}
+<div class="main-content">
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xxl-12">
+                    <div class="card">
+                        <div class="card-header align-items-center d-flex">
+                            <h4 class="card-title mb-0 flex-grow-1">Attendance Form</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="live-preview">
+                                {% if form.errors %}
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        {% for field, errors in form.errors.items %}
+                                        <li><strong>{{ field }}:</strong> {{ errors|join:", " }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                                {% endif %}
+                                <form method="post" enctype="multipart/form-data">
+                                    <div class="row gy-4">
+                                        {{ form.media }}
+                                        {% csrf_token %}
+                                        <input id="optionCount" type="hidden" name="option_count" value="0">
+                                        {% for field in form %}
+                                        <div class="col-xxl-3 col-md-3"></div>
+                                        <div class="col-xxl-6 col-md-6">
+                                            <div>
+                                                <label for="basiInput" class="form-label">{{ field.label }} </label>
+                                                {{ field }}
+                                            </div>
+                                        </div>
+                                        <div class="col-xxl-3 col-md-3"></div>
+                                        {% endfor %}
+                                    </div>
+                                    <div class="row gy-4 mt-2">
+                                        <div class="col-xxl-3 col-md-3"></div>
+                                        <div class="col-xxl-6 col-md-6 mt-4">
+                                            <div class="d-flex justify-content-end">
+                                                <button class="btn btn-success" type="submit">
+                                                    {% if form.instance.pk %}
+                                                    Update Attendance Record
+                                                    {% else %}
+                                                    Create Attendance Record
+                                                    {% endif %}
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="col-xxl-3 col-md-3"></div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}      

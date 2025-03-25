@@ -1,0 +1,54 @@
+{% extends "partials/base.html" %}
+{% load static %}
+{% block title %}Dashboard{% endblock title %}
+{% block extra_css %}
+<!-- jsvectormap css -->
+<link href="{% static 'libs/jsvectormap/dist/css/jsvectormap.min.css'%}" rel="stylesheet" type="text/css" />
+
+<!--Swiper slider css-->
+<link href="{% static 'libs/swiper/swiper-bundle.min.css'%}" rel="stylesheet" type="text/css" />
+{% endblock extra_css %}
+
+{% block content %}
+<!-- ============================================================== -->
+<!-- Start right Content here -->
+<!-- ============================================================== -->
+<div class="main-content">
+
+    <div class="page-content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col">
+
+
+
+                </div> <!-- end col -->
+                <div class="px-4">
+                    <div class="row">
+                        <div class="col-xxl-5 align-self-center">
+                            <div class="py-4">
+                                <h4 class="display-6 coming-soon-text">Welcome to Bottle Attendance System.</h4>
+
+                            </div>
+                        </div>
+                        <div class="col-xxl-3 ms-auto">
+                            <div class="mb-n5 pb-1 faq-img d-none d-xxl-block">
+                                <img src="{% static 'images/faq-img.png'%}" alt="" class="img-fluid">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- container-fluid -->
+        </div>
+        <!-- End Page-content -->
+        {% block footer %}
+        {% include "partials/footer.html" %}
+        {% endblock footer %}
+
+    </div>
+    <!-- end main content-->
+    {% endblock content %}

@@ -1,0 +1,16 @@
+{% extends 'index.html' %}
+
+{% block title %}Delete Attendance Record{% endblock title %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">Delete Attendance Record</h2>
+    <p>Are you sure you want to delete the attendance record for <strong>{{ object.employee }}</strong>?</p>
+
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Confirm Delete</button>
+        <a href="{% url 'attendance_record:attendance_list' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock content %}
